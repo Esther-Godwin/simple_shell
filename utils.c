@@ -2,7 +2,7 @@
 
 /**
  * _putchar - Prints a character
- * @c: Character to print
+ * @ch: Character to print
  *
  * Return: Number of character printed
  */
@@ -33,12 +33,12 @@ char **tokenize(char *buffer, env_t *env)
 		token = strtok(NULL, " \t\n");
 	}
 	temp[i] = NULL;
-	return temp;
+	return (temp);
 }
 
 /**
  * _strlen - Calculates the length of a string
- * s: The string to get its length
+ * @s: The string to get its length
  *
  * Return: The length of the string
  */

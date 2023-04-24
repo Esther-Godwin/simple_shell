@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * shell - Creates a command line interpreter
+ * main - Creates a command line interpreter
  * @argc: Number of arguments
  * @argv: Array of arguments
  *
@@ -27,9 +27,8 @@ int main(int __attribute__((unused)) argc, char **argv)
 		}
 		if (write_count == -1)
 			return (1);
-
 		read_count = getline(&buffer, &len, stdin);
-		if(read_count == -1)
+		if (read_count == -1)
 		{
 			if (is_interactive)
 				_putchar('\n');
