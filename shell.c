@@ -40,7 +40,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 		pid = fork();
 		if (pid == 0)
 		{
-			execve(argv[0], tokens, environ);
+			execute(&env, tokens, argv[0]);
 		}
 		else
 		{

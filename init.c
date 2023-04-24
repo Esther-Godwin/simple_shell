@@ -23,6 +23,7 @@ env_t *init_env(env_t *env, char *program_name)
 	env->in_terminal = 1;
 	env->status = 0;
 	env->program_name = program_name;
+	env->exit_signal = 0;
 
 	signal(SIGINT, handle_signal);
 

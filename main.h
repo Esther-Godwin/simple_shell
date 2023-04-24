@@ -23,14 +23,15 @@ typedef struct env_t
 	int in_terminal;
 	int status;
 	char *program_name;
-	int exit_sig;
+	int exit_signal;
 } env_t;
 
 int _putchar(char ch);
 char **tokenize(char *buffer, env_t *env);
-int error_msg(env_t *env, char *command);
+void print_error(env_t *env, char *command);
 void init_prog(char *av, env_t *env);
 int wait_exit(env_t *env);
 int _strlen(char *s);
+void execute(env_t *env, char **tokens, char *program_name);
 
 #endif
