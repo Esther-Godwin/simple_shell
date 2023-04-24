@@ -5,6 +5,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <signal.h>
+#include <stdbool.h>
+#include <sys/wait.h>
+extern char **environ;
 
 /**
  * struct env_t - Struct of shell environment variables
@@ -27,5 +31,6 @@ char **tokenize(char *buffer, env_t *env);
 int error_msg(env_t *env, char *command);
 void init_prog(char *av, env_t *env);
 int wait_exit(env_t *env);
+int _strlen(char *s);
 
 #endif

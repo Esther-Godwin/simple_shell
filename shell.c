@@ -16,7 +16,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	bool is_interactive;
 	env_t env;
 
-	init_prog(av[0], &env);
+	init_prog(argv[0], &env);
 	is_interactive = isatty(STDIN_FILENO);
 	while (env.in_terminal && read_count != -1)
 	{

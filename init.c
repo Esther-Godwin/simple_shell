@@ -1,6 +1,17 @@
 #include "main.h"
 
 /**
+ * handle_signal - voids a signal and prints prompt.
+ * @signal: signal to be ignored.
+ */
+
+void handle_signal(int __attribute__((unused)) signal)
+{
+	write(STDOUT_FILENO, "\n$ ", 3);
+
+}
+
+/**
  * init_env - Initialize shell env variables
  * @env: env struct
  * @program_name: Program name
@@ -13,7 +24,7 @@ env_t *init_env(env_t *env, char *program_name)
 	env->status = 0;
 	env->program_name = program_name;
 
-	signal(SIGINT, write(SIGOUT_FILENO, "\n$ ", 3));
+	signal(SIGINT, handle_signal);
 
 	return (env);
 }
