@@ -1,0 +1,55 @@
+#include "shell.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
+#define MAX_COMMAND_LENGTH 256
+
+//_void display_prompt() {
+    printf("simple_shell$ ");
+    fflush(stdout);
+}
+
+//_void execute_command(char *command) {
+    pid_t pid = fork();
+    if (pid == -1) {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    } else if (pid == 0) {
+        // Child process
+        if (execlp(command, command, NULL) == -1) {
+            perror("execlp");
+            exit(EXIT_FAILURE);
+        }
+    } else {
+        // Parent process
+        int status;
+        if (waitpid(pid, &status, 0) == -1) {
+            perror("waitpid");
+            exit(EXIT_FAILURE);
+        }
+    }
+}
+
+//_int main() {
+    char command[MAX_COMMAND_LENGTH];
+
+    while (1) {
+        display_prompt();
+
+        if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL) {
+            // End of file condition (Ctrl+D)
+            printf("\n");
+            break;
+        }
+
+        // Remove trailing newline character
+        command[strcspn(command, "\n")] = '\0';
+
+        execute_command(command);
+    }
+
+    return 0;
+}
+
