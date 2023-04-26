@@ -68,3 +68,24 @@ int wait_exit(env_t *env)
 	env->status = WEXITSTATUS(status_code);
 	return (env->status);
 }
+
+/**
+ * _strdup - creates a copy of a string
+ * @string: string to copy
+ * Return: copy of the string
+ */
+char *_strdup(char *string)
+{
+	int i, len = _strlen(string);
+	char *copy;
+
+	if (len <= 0)
+		return (NULL);
+	copy = malloc(len + 1);
+	if (copy == NULL)
+		return (NULL);
+	copy[len] = '\0';
+	for (i = 0; i < len; i++)
+		copy[i] = string[i];
+	return (copy);
+}
