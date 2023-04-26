@@ -32,6 +32,7 @@ void print_error(env_t *env, char *command);
 void init_prog(char *av, env_t *env);
 int wait_exit(env_t *env);
 int _strlen(char *s);
-void execute(env_t *env, char **tokens, char *program_name);
+void execute(env_t *env, char **tokens);
+char *_strdup(char *string);
 
 #endif
