@@ -46,8 +46,8 @@ typedef struct liststr
 } list_t;
 
 /**
-structpassinfo-contains pseudo-arguement to pass into function,
-allows uniformly prototype for functions pointer struct
+ *struct pass info-contains pseudo-arguement to pass into function,
+ *allows uniformly prototype for functions pointer struct
  * @cmd_buf_type: CMD_type ||, etc
  * @readfd: reads the fd
  * @histcount: count history line numb
@@ -57,7 +57,6 @@ allows uniformly prototype for functions pointer struct
  * @argv:this is an array of strings that was generated from arg
 @path:this is a string path
 @argc:counts arguments
-@line_count: error is counted
 @err_num:the checks if error code exists
 @linecount_flag: counts line of inputs
 @history:checks the history node
@@ -84,7 +83,7 @@ typedef struct passinfo
 	int env_changed;
 	int status;
 
-	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
+	char **cmd_buf;/* pointer to cmd ; chain buffer, for memory mangement */
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
