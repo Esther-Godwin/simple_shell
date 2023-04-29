@@ -1,7 +1,7 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
-
 #include <sys/types.h>
+
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <limits.h>
@@ -82,17 +82,14 @@ typedef struct passinfo
 	char **environ;
 	int env_changed;
 	int status;
-
-	char **cmd_buf;/* pointer to cmd ; chain buffer, for memory mangement */
+	_}
+	char **cmd_buf;
 	int cmd_buf_type; /* CMD_type ||, &&, ; */
 	int readfd;
 	int histcount;
-} info_t;
-
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 		0, 0, 0}
-
 /* toem_errors.c */
 void _eputs(char *);
 int _eputchar(char);
@@ -107,9 +104,9 @@ char *_strcat(char *, char *);
 
 
 /* toem_parser.c */
-int is_cmd(info_t *, char *);
+int is_cmd(ino_t *, char *);
 char *dup_chars(char *, int, int);
-char *find_path(info_t *, char *, char *);
+char *find_path(ino_t *, char *, char *);
 
 /* toem_exits.c */
 char *_strncpy(char *, char *, int);
@@ -124,7 +121,7 @@ char *_strchr(char *, char);
 typedef struct builtin
 {
 	char *type;
-	int (*func)(info_t *);
+	int (*func)(ino_t *);
 } builtin_table;
 
 
@@ -132,14 +129,14 @@ typedef struct builtin
 int loophsh(char **);
 
 /* toem_shloop.c */
-int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+int hsh(ino_t *, char **);
+int find_builtin(ino_t *);
+void find_cmd(ino_t *);
+void fork_cmd(ino_t *);
 
 /*toem_getline.c */
-ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
+ssize_t get_input(ino_t *);
+int _getline(ino_t *, char **, size_t *);
 void sigintHandler(int);
 
 
@@ -152,24 +149,24 @@ list_t *node_starts_with(list_t *, char *, char);
 ssize_t get_node_index(list_t *, list_t *);
 
 /* toem_vars.c */
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
+int is_chain(ino_t *, char *, size_t *);
+void check_chain(ino_t *, char *, size_t *, size_t, size_t);
+int replace_alias(ino_t *);
+int replace_vars(ino_t *);
 int replace_string(char **, char *);
 
 /* toem_environ.c */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+char *_getenv(ino_t *, const char *);
+int _myenv(ino_t *);
+int _mysetenv(ino_t *);
+int _myunsetenv(ino_t *);
+int populate_env_list(ino_t *);
 /* toem_history.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+char *get_history_file(ino_t *ino);
+int write_history(ino_t *ino);
+int read_history(ino_t *ino);
+int build_history_list(ino_t *ino, char *buf, int linecount);
+int renumber_history(ino_t *ino);
 
 /* toem_lists.c */
 list_t *add_node(list_t **, const char *, int);
@@ -179,7 +176,7 @@ int delete_node_at_index(list_t **, unsigned int);
 void free_list(list_t **);
 
 /* toem_atoi.c */
-int interactive(info_t *);
+int interactive(ino_t *);
 int is_delim(char, char *);
 int _isalpha(int);
 int _atoi(char *);
@@ -190,25 +187,25 @@ char **strtow2(char *, char);
 
 /* toem_errors1.c */
 int _erratoi(char *);
-void print_error(info_t *, char *);
+void print_error(ino_t *, char *);
 int print_d(int, int);
 char *convert_number(long int, int, int);
 void remove_comments(char *);
 
 /* toem_getinfo.c */
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
+void clear_info(ino_t *);
+void set_info(ino_t *, char **);
+void free_info(ino_t *, int);
 
 /* toem_getenv.c */
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+char **get_environ(ino_t *);
+int _unsetenv(ino_t *, char *);
+int _setenv(ino_t *, char *, char *);
 
 /* toem_builtin.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int _myexit(ino_t *);
+int _mycd(ino_t *);
+int _myhelp(ino_t *);
 
 /* toem_realloc.c */
 char *_memset(char *, char, unsigned int);
@@ -223,8 +220,8 @@ void _puts(char *);
 int _putchar(char);
 
 /* toem_builtin1.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+int _myhistory(ino_t *);
+int _myalias(ino_t *);
 
 
 
@@ -232,7 +229,7 @@ int _myalias(info_t *);
 int bfree(void **);
 
 /* toem_builtin1.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+int _myhistory(ino_t *);
+int _myalias(ino_t *);
 
 #endif
