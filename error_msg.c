@@ -22,13 +22,11 @@ int error_msg(env_t *env, char *command)
 }
 
 /**
- * error_msg - prints error message to STDERR_FILENO.
+ * error_msg2 - prints error message to STDERR_FILENO.
  * @env: struct fo shell variables.
  * @command: command passed.
  * Return: nothing.
  */
-
-
 int error_msg2(env_t *env, char **command)
 {
 	char buffer[1024];
