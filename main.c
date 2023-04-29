@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
  * main - enters valid points
  * @ac:takes care of  arg count
@@ -40,3 +41,4 @@ int main(int ac, char **av)
 	read_history(info);
 	hsh(info, av);
 	return (EXIT_SUCCESS);
+}
