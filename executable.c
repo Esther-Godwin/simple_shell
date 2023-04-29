@@ -20,7 +20,9 @@ int is_cmd(info_t *info, char *path)
 		return (1);
 	}
 	return (0);
-	/**
+}
+
+/**
  * dup_chars - this duplicate char
  * @pathstr: path of the string
  * @start: starts of an index
@@ -39,6 +41,7 @@ char *dup_chars(char *pathstr, int start, int stop)
 	buf[k] = 0;
 	return (buf);
 }
+
 /**
  * find_path - finds this cmd in the PATH string
  * @info: the info struct
