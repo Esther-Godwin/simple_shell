@@ -1,7 +1,7 @@
 #ifndef _SHELL_H_
 #define _SHELL_H_
-#include <sys/types.h>
 
+#include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <limits.h>
@@ -46,8 +46,8 @@ typedef struct liststr
 } list_t;
 
 /**
- *struct pass info-contains pseudo-arguement to pass into function,
- *allows uniformly prototype for functions pointer struct
+ * struct pass info-contains pseudo-arguement to pass into function,
+ * allows uniformly prototype for functions pointer struct
  * @cmd_buf_type: CMD_type ||, etc
  * @readfd: reads the fd
  * @histcount: count history line numb
@@ -55,17 +55,17 @@ typedef struct liststr
  * @env:links list of local copy of the working environment
  * @environ:custommodifiedcopyofenvironfromLLenv
  * @argv:this is an array of strings that was generated from arg
-@path:this is a string path
-@argc:counts arguments
-@err_num:the checks if error code exists
-@linecount_flag: counts line of inputs
-@history:checks the history node
-@status:returns status of the last exec'dcommand
-@cmd_buf:pointes to cmd
-@arg:generates line containing arguements
-@alias:contains the alias node
-@env_changed:on changed enviroments
-
+ * @path:this is a string path
+ * @argc:counts arguments
+ * @err_num:the checks if error code exists
+ * @linecount_flag: counts line of inputs
+ * @history:checks the history node
+ * @status:returns status of the last exec'dcommand
+ * @cmd_buf:pointes to cmd
+ * @arg:generates line containing arguements
+ * @alias:contains the alias node
+ * @env_changed:on changed enviroments
+ */
 typedef struct passinfo
 {
 	char *arg;
@@ -88,9 +88,11 @@ typedef struct passinfo
 	int readfd;
 	int histcount;
 } info_t;
+
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 		0, 0, 0}
+
 /* toem_errors.c */
 void _eputs(char *);
 int _eputchar(char);
